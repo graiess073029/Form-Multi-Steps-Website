@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="stylesheet" type="text/css" href="../styles/styles.css">
+  <link rel="stylesheet" type="text/css" href="../styles/plan.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Multi-step form</title>
+</head>
+<body>
+  <div class="root">
+    <div class="root_inner">
+
+      <aside class="sidebar">
+
+        <div class="container">
+          <div class="cercles">
+            <div><p>1</p></div>
+            <div style="background-color: hsl(206, 94%, 87%);"><p style="margin-left: 15px;color: black;">2</p></div>
+            <div><p>3</p></div>
+            <div><p>4</p></div>
+          </div>
+
+          <div class="steps">
+            <div>
+              <label>STEP 1</label>
+              <p>YOUR INFO</p>
+            </div>
+
+            <div>
+              <label>STEP 2</label>
+              <p>SELECT PLAN</p>
+            </div>
+
+            <div>
+              <label>STEP 3</label>
+              <p>ADD-ONS</p>
+            </div>
+
+            <div>
+              <label>STEP 4</label>
+              <p>SUMMARY</p>
+            </div>
+
+            
+          </div>
+
+        </div>
+
+      </aside>
+
+      <section class="all">
+
+        <main class="main_page">
+          <div class="top">
+            <header>
+              <h1>Select your plan</h1>
+              <label>You have the option of monthly or yearly billing</label>
+            </header>
+  
+            <div class="select_div">
+              <div class="errorconsole">
+                <h3 class="error" style="margin: 0%;">Please choose a plan</h3>
+              </div>
+               
+              <div class="options">
+                <div id="one"  title="Arcade" class="option" onclick="onclickoption(document.getElementById('one'))">
+                  <img src="/assets/images/icon-arcade.svg" alt="">
+                  <div>
+                    <p>Arcade</p>
+                    <label id="pricearcade">$9/mo</label>
+                    <label  class="free">2 months free</label>
+                  </div>
+                </div>
+      
+                <div id="two" title="Advanced" class="option" onclick="onclickoption(document.getElementById('two'))">
+                  <img src="/assets/images/icon-advanced.svg" alt="">
+                  <div>
+                    <p>Advanced</p>
+                    <label id="priceadvanced">$12/mo</label>
+                    <label  class="free">2 months free</label>
+                  </div>
+                </div>
+      
+                <div id="three" title="Pro" class="option" onclick="onclickoption(document.getElementById('three'))">
+                  <img src="/assets/images/icon-pro.svg" alt="">
+                  <div>
+                    <p>Pro</p>
+                    <label id="pricepro">$15/mo</label>
+                    <label  class="free">2 months free</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="choosedate">
+              <div class="containery">
+                <p id="month"><span>Monthly</span></p>
+                <label class="switch">
+                  <input type="checkbox" />
+                  <span onclick="monthoryear()"></span>
+                </label>
+                <p id="year"><span>Yearly</span></p>
+              </div>
+            </div>
+          </div>
+  
+  
+        </main>
+        
+        <div class="next">
+          <button class="back" onclick="precedent_step()">Go back</button>
+          <button class="next" type="button" onclick="next_step()">Next Step</button>
+        </div>
+
+      </section>
+    </div>
+  </div>
+
+  <script>
+    var index = 0;
+    var index1 = 0;
+    var planchoosed = ""
+    var price = ""
+    var ele = ""
+    var paiement = "(Monthly)"
+    var error = false
+
+    function onclickoption(element){
+        if(error == true){
+          document.getElementsByClassName("error")[0].style.visibility = "hidden"
+          document.getElementsByClassName("option")[0].style.border = "1px solid hsl(229, 24%, 87%)"
+          document.getElementsByClassName("option")[1].style.border = "1px solid hsl(229, 24%, 87%)"
+          document.getElementsByClassName("option")[2].style.border = "1px solid hsl(229, 24%, 87%)"
+
+        }
+
+        element.style.backgroundColor = "hsl(217, 100%, 97%)"
+        element.style.border = "1px solid hsl(243, 100%, 62%)"
+        if(index >= 1){
+          window.precedent.style.backgroundColor = "white"
+          window.precedent.style.border = "1px solid hsl(229, 24%, 87%)"
+        }
+        window.precedent = element;
+        index += 1;
+        planchoosed = element.title;
+        ele = element
+        price = element.lastElementChild.children[1].textContent
+
+        error = false        
+        
+
+      }
+
+    function monthoryear(){
+      var month = document.getElementById("month");
+      var year = document.getElementById("year");
+      var arcade = document.getElementById("pricearcade");
+      var advanced = document.getElementById("priceadvanced");
+      var pro = document.getElementById("pricepro");
+      var free = document.getElementsByClassName("free");
+      if (index1%2 == 0)
+      {
+        paiement = "(Yearly)"
+        month.style.color = "hsl(231, 11%, 63%)"
+        year.style.color = "white"
+        free[0].style.display = "block"
+        free[1].style.display = "block"
+        free[2].style.display = "block"
+        arcade.textContent = "$90/year"
+        advanced.textContent = "$120/yr"
+        pro.textContent = "$150/yr"
+        price = ele.lastElementChild.children[1].textContent
+
+
+      }
+
+      else
+      {
+        paiement = "(Monthly)"
+        year.style.color = "hsl(231, 11%, 63%)"
+        month.style.color = "white"
+        free[0].style.display = "none"
+        free[1].style.display = "none"
+        free[2].style.display = "none"
+        arcade.textContent = "$9/mo"
+        advanced.textContent = "$12/mo"
+        pro.textContent = "$15/mo"
+        price = ele.lastElementChild.children[1].textContent
+        
+
+      }
+      index1 += 1;
+    }
+
+    function next_step(){
+    senddata()
+    var step = window.location.href
+    var nstep = parseInt(step.split(".htm")[step.split(".htm").length -2].split("step")[1]);
+    window.location.href = "http://www.localhost:5500/Pages/step"+ (nstep += 1) + ".html";
+}   
+
+    function precedent_step(){
+    var step = window.location.href
+    var nstep = parseInt(step.split(".htm")[step.split(".htm").length -2].split("step")[1]);
+    window.location.href = "http://www.localhost:5500/Pages/step"+ (nstep -= 1) + ".html";
+
+}
+
+    function senddata(){
+      localStorage.clear()
+      var storage = localStorage;
+      localStorage.setItem("Abonnement",planchoosed)
+      localStorage.setItem("Paiment",paiement)
+      localStorage.setItem("Prix",price)
+
+    }
+  </script>
+  
+</body>
+</html>
