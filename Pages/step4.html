@@ -171,16 +171,18 @@
 
 
     function next_step(){
-      var step = window.location.href
-      var nstep = parseInt(step.split(".htm")[step.split(".htm").length -2].split("step")[1]);
-      window.location.href = "http://www.localhost:5500/Pages/step"+ (nstep += 1) + ".html";}   
+    senddata()
+    var step = window.location.href
+    var nstep = parseInt(step.split(".htm")[step.split(".htm").length -2].split("step")[1]);
+    window.location.href = window.location.host + "/Pages/step"  + (nstep += 1) + ".html"
+}   
 
     function precedent_step(){
-      var step = window.location.href
-      var nstep = parseInt(step.split(".htm")[step.split(".htm").length -2].split("step")[1]);
-      window.location.href = "http://www.localhost:5500/Pages/step"+ (nstep -= 1) + ".html";
+    var step = window.location.href
+    var nstep = parseInt(step.split(".htm")[step.split(".htm").length -2].split("step")[1]);
+     window.location.href = window.location.host + "/Pages/step"  + (nstep += 1) - ".html"
 
-    }
+}
     var cookies = document.cookie.split(";")
 
     
