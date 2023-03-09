@@ -35,10 +35,12 @@
         height: 100%;
         background-color: hsl(217, 100%, 97%);
         overflow: hidden;
+        display : flex;
+        justify-content : center;
+        align-items : center;
     }
     
     .root{
-        margin: 5% 0% 0% 16%;
         background-color: hsl(0, 0%, 100%);
         border-radius: 20px;
         width: 950px;
